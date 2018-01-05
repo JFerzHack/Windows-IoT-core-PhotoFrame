@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="PhotoFrame.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PhotoFrame"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loading="Page_Loading">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel x:Name="setup">
+            <Slider x:Name="interval_Slider" Maximum="7200" Header="Select pause betwen(in sec):" Margin="0,10,0,0" ValueChanged="Slider_ValueChanged"/>
+            <ToggleSwitch x:Name="animation_Switch" Header="Enable animations" Margin="0,10,0,0" Toggled="ToggleSwitch_Toggled"/>
+            <Button Content="Select folder and start" Margin="0,10,0,0" Click="Button_Click"/>
+            <Button Content="Resume" x:Name="continue_Button" Margin="0,20,0,0" Click="Button_Click_1" IsEnabled="False"/>
+            <TextBlock Margin="0,40,0,0" Text="To start SlideShow chose folder and click chose. To get out of SlideShow just hold on screen"/>
+        </StackPanel>
+
+        <Image Name="img" Stretch="Fill" Holding="img_Holding" Visibility="Collapsed">
+            <Image.Resources>
+                <Storyboard x:Name="zoom_Slow">
+                    <DoubleAnimation Storyboard.TargetName="renderTransform" Storyboard.TargetProperty="CenterX" From="0" To="-100" Duration="0:0:30"/>
+                </Storyboard>
+            </Image.Resources>
+            <Image.RenderTransform>
+                <ScaleTransform x:Name="renderTransform" CenterX="0"  ScaleX="0"/>
+            </Image.RenderTransform>
+        </Image>
+    </Grid>
+</Page>
